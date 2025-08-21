@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created for Common Lisp Package Browser -->
+<interface>
+  <requires lib="gtk" version="4.6"/>
+
+  <object class="GtkApplicationWindow" id="main_window">
+    <property name="default-height">600</property>
+    <property name="default-width">500</property>
+    <property name="title">Common Lisp Package Browser</property>
+
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="spacing">6</property>
+        <property name="margin-top">12</property>
+        <property name="margin-bottom">12</property>
+        <property name="margin-start">12</property>
+        <property name="margin-end">12</property>
+
+        <!-- Control panel -->
+        <child>
+          <object class="GtkBox" id="control_panel">
+            <property name="orientation">horizontal</property>
+            <property name="spacing">12</property>
+            <property name="halign">start</property>
+
+            <child>
+              <object class="GtkLabel">
+                <property name="label">Refresh every:</property>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkSpinButton" id="refresh_interval">
+                <property name="adjustment">
+                  <object class="GtkAdjustment">
+                    <property name="lower">1</property>
+                    <property name="upper">300</property>
+                    <property name="value">5</property>
+                    <property name="step-increment">1</property>
+                    <property name="page-increment">5</property>
+                  </object>
+                </property>
+                <property name="digits">0</property>
+                <property name="width-chars">4</property>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkLabel">
+                <property name="label">seconds</property>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkButton" id="refresh_button">
+                <property name="label">Refresh Now</property>
+                <property name="margin-start">12</property>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkButton" id="toggle_auto_refresh">
+                <property name="label">Auto Refresh: ON</property>
+                <property name="margin-start">6</property>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <!-- Package tree view -->
+        <child>
+          <object class="GtkScrolledWindow">
+            <property name="vexpand">true</property>
+            <property name="hexpand">true</property>
+            <property name="has-frame">true</property>
+
+            <child>
+              <object class="GtkTreeView" id="package_tree">
+                <property name="headers-visible">true</property>
+                <property name="enable-tree-lines">true</property>
+                <property name="show-expanders">true</property>
+
+                <!-- Column for package names -->
+                <child>
+                  <object class="GtkTreeViewColumn" id="name_column">
+                    <property name="title">Package Name</property>
+                    <property name="expand">true</property>
+
+                    <child>
+                      <object class="GtkCellRendererText" id="name_renderer">
+                        <property name="ellipsize">end</property>
+                      </object>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                        <attribute name="weight">1</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+
+                <!-- Column for type indicator -->
+                <child>
+                  <object class="GtkTreeViewColumn" id="type_column">
+                    <property name="title">Type</property>
+                    <property name="sizing">fixed</property>
+                    <property name="fixed-width">80</property>
+
+                    <child>
+                      <object class="GtkCellRendererText" id="type_renderer">
+                      </object>
+                      <attributes>
+                        <attribute name="text">2</attribute>
+                        <attribute name="style">3</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <!-- Status bar -->
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">horizontal</property>
+            <property name="margin-top">6</property>
+
+            <child>
+              <object class="GtkLabel" id="status_label">
+                <property name="label">Ready</property>
+                <property name="halign">start</property>
+                <property name="hexpand">true</property>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkLabel" id="package_count">
+                <property name="label">0 packages</property>
+                <property name="halign">end</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
